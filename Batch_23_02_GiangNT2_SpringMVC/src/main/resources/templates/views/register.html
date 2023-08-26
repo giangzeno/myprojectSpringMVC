@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register New Project</title>
+<link rel="icon" type="images/x-icon"
+	href="https://s3.cloud.cmctelecom.vn/tinhte2/2020/08/5097730_w2.png" />
+<link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/assets/css/home.css}">
+<link rel="stylesheet"
+	th:href="@{/assets/fontawesome-free-6.2.0-web/css/all.min.css}">
+
+</head>
+
+<body>
+	<div class="container-fluid">
+		<div class="row ">
+			<div class="col-4 backoug"></div>
+			<div class="col-8 contrainers">
+
+				<div class="row">
+
+					<div class="col">
+						<div class="row d-flex justify-content-center">
+							<h2>REGISTER SCREEN</h2>
+						</div>
+						<div class="row d-flex justify-content-center">
+							<form th:action="@{/home/register}" th:object="${Project}"
+								class="col-7 " method="post">
+								<strong class="ml-2 mt-2">Project ID</strong> <input type="text"
+									class="form-control" placeholder="Project ID"
+									th:field="*{projectId}" maxlength="10">
+								<div class="feedback ml-2" th:text="${validate}"></div>
+								<strong class="ml-2 mt-2">Project Name</strong> <input
+									type="text" class="form-control" aria-label="Small"
+									placeholder="Project Name" th:field="*{projectName}"
+									maxlength="30" th:readonly="${readonly}">
+								<div class="feedback ml-2" th:text="${validateprojectName}"></div>
+								<strong class="ml-2 mt-2">Difficulty</strong> <input type="text"
+									class="form-control " aria-label="Small"
+									placeholder="Difficulty" th:field="*{difficulty}" maxlength="1">
+								<div class="feedback ml-2"></div>
+								<strong class="ml-2 mt-2"> Version</strong> <input type="text"
+									class="form-control " aria-label="Small" placeholder="Version"
+									th:field="*{version}" maxlength="10">
+								<div class="feedback ml-2"></div>
+								<strong class="ml-2 mt-2"> Location</strong> <input type="text"
+									class="form-control " aria-label="Small" placeholder="Location"
+									th:field="*{location}" maxlength="50">
+								<div class="feedback ml-2"></div>
+								
+								<strong class="ml-2 mt-2"> Department Name</strong> <select
+									class="custom-select " th:field="*{deptId}">
+									<option value="">Open this select Department Name</option>
+									<th:block th:each="i : ${ListDep}">
+										<option th:value="${i.deptId}" th:text="${i.deptName}"></option>
+									</th:block>
+
+								</select>
+								<div class="feedback ml-2"></div>
+
+							<div class="row mt-3">
+								<button class="codepro-custom-btn codepro-btn-16 ml-3 REGISTER"
+									title="Code Pro">CONFIRM</button>
+								<a th:href="@{/home}">
+									<button class="codepro-custom-btn codepro-btn-4 ml-3"
+										title="Code Pro" type="button">
+										<span>BACK</span>
+									</button>
+								</a>
+							</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+<script th:inline="javascript" type="text/javascript">
+	var feedbackregister = /*[[${feedbackregister}]]*/'';
+	var feedbackValidate = /*[[${feedbackValidate}]]*/'';
+</script>
+<script th:src="@{/assets/jQuery/sweetalert2.js}" th:inline="javascript"></script>
+<script th:src="@{/assets/jQuery/jQuery-2.1.3.min.js}"
+	th:inline="javascript"></script>
+<script th:src="@{/assets/jQuery/register.js}" th:inline="javascript"></script>
+<script th:src="@{/assets/jQuery/validate.js}" th:inline="javascript"></script>
+
+</html>

@@ -1,0 +1,28 @@
+body {
+    background: url(/imgs/ban-lam-viec.jpg)
+}
+
+a {
+    color: aliceblue;
+}
+
+a:hover {
+    color: forestgreen;
+}
+
+.form-login {
+    background: rgba(0, 0, 0, 0.5);
+    margin-top: 6%;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: aliceblue;
+    border-radius: 5px;
+}
+
+.checkbox:hover{
+	cursor: pointer;
+}
+
+.feedback{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: red;
+}

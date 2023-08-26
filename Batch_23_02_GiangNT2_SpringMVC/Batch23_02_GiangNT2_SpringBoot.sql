@@ -1,0 +1,90 @@
+CREATE DATABASE [Batch23_02_GiangNT2_SpringBoot]
+
+CREATE TABLE DEPT(
+	DEPT_ID [int] NOT NULL,
+	DEPT_NAME [varchar](20) NULL,
+ CONSTRAINT [PK_DEPT] PRIMARY KEY CLUSTERED 
+(
+	DEPT_ID ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+
+CREATE TABLE PROJECT(
+	PROJECT_ID int NOT NULL,
+	PROJECT_NAME varchar(30) NULL,
+	DEPT_ID int NULL,
+	DIFFICULTY char(1) NULL,
+	INS_TM date NULL,
+	UPD_TM date NULL,
+	VERSION int NULL,
+	LOCATION varchar(50) NULL,
+ CONSTRAINT [PK_PROJECT] PRIMARY KEY CLUSTERED 
+(
+	[PROJECT_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+UNIQUE NONCLUSTERED 
+(
+	[PROJECT_NAME] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+
+CREATE TABLE USERS(
+	id int IDENTITY(1,1) NOT NULL,
+	username varchar(50) NULL,
+	password varchar(300) NULL,
+	authority varchar(50) NULL,
+	email varchar(50) NULL,
+ CONSTRAINT PK_USER PRIMARY KEY CLUSTERED 
+(
+	id ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+ALTER TABLE PROJECT  WITH CHECK ADD  CONSTRAINT FK_PROJECT_DEPT FOREIGN KEY(DEPT_ID)
+REFERENCES DEPT ([DEPT_ID])
+
+ALTER TABLE PROJECT CHECK CONSTRAINT FK_PROJECT_DEPT
+
+-- Data Sample DEPT
+INSERT INTO DEPT (DEPT_ID, DEPT_NAME)
+VALUES 
+    (1, 'Department 1'),
+    (2, 'Department 2'),
+    (3, 'Department 3'),
+    (4, 'Department 4'),
+    (5, 'Department 5'),
+    (6, 'Department 6'),
+    (7, 'Department 7'),
+    (8, 'Department 8'),
+    (9, 'Department 9'),
+    (10, 'Department 10'),
+    (11, 'Department 11'),
+    (12, 'Department 12'),
+    (13, 'Department 13'),
+    (14, 'Department 14'),
+    (15, 'Department 15')
+-- Data Sample Project
+ INSERT INTO PROJECT (PROJECT_ID, PROJECT_NAME, DEPT_ID, DIFFICULTY, INS_TM, UPD_TM, VERSION,LOCATION)
+SELECT
+    ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS PROJECT_ID,
+    'Project ' + CONVERT(varchar, ROW_NUMBER() OVER (ORDER BY (SELECT NULL))) AS PROJECT_NAME,
+    3 AS DEPT_ID,
+    CASE (ROW_NUMBER() OVER (ORDER BY (SELECT NULL))) % 3
+        WHEN 0 THEN 'E'
+        WHEN 1 THEN 'M'
+        WHEN 2 THEN 'H'
+    END AS DIFFICULTY,
+    DATEADD(DAY, (ROW_NUMBER() OVER (ORDER BY (SELECT NULL))) - 1, '2023-01-01') AS INS_TM,
+    NULL AS UPD_TM,
+    1 AS VERSION,
+    'Da Nang' AS LOCATION
+FROM
+    (VALUES (1),(1),(1),(1),(1),(1),(1),(1),(1),(1),
+            (1),(1),(1),(1),(1),(1),(1),(1),(1),(1),
+            (1),(1),(1),(1),(1),(1),(1),(1),(1),(1),
+            (1),(1),(1),(1),(1),(1),(1),(1),(1),(1),
+            (1),(1),(1),(1),(1),(1),(1),(1),(1),(1),
+			(1),(1),(1),(1),(1),(1),(1),(1),(1),(1),
+            (1),(1),(1),(1),(1),(1),(1),(1),(1),(1),
+            (1),(1),(1),(1),(1),(1),(1),(1),(1),(1),
+            (1),(1),(1),(1),(1),(1),(1),(1),(1),(1),
+            (1),(1),(1),(1),(1),(1),(1),(1),(1),(1)) AS Numbers(Number)

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+  <classPathEntry location="/Program Files/IBM/SQLLIB/java/db2java.zip" />
+
+  <context id="DB2Tables" targetRuntime="MyBatis3">
+    <jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+        connectionURL="jdbc:sqlserver://localhost:1433;databaseName=Batch23_02_GiangNT2_SpringBoot;encrypt=true;trustServerCertificate=true"
+        userId="sa"
+        password="Giang15052004">
+    </jdbcConnection>
+
+    <javaTypeResolver >
+      <property name="forceBigDecimals" value="false" />
+    </javaTypeResolver>
+
+    <javaModelGenerator targetPackage="com.model" targetProject="Batch_23_02_GiangNT2_SpringBoot/src/main/java"/>
+
+    <sqlMapGenerator targetPackage="com.model.sql"  targetProject="Batch_23_02_GiangNT2_SpringBoot/src/main/resources"/>
+
+    <javaClientGenerator type="XMLMAPPER" targetPackage="com.mapper"  targetProject="Batch_23_02_GiangNT2_SpringBoot/src/main/java"/>
+
+    <table tableName="USERS" domainObjectName="Users" >
+     
+    </table>
+    <table tableName="DEPT" domainObjectName="Dept" >
+     
+    </table>
+    <table tableName="PROJECT" domainObjectName="Project" >
+     
+    </table>
+
+  </context>
+</generatorConfiguration>

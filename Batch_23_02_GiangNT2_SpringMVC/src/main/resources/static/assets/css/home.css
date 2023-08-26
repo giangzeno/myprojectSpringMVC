@@ -1,0 +1,56 @@
+.backoug {
+	background: url(/imgs/4870592.jpg);
+	width: 100%;
+	height: 55cqw;
+	border-top-right-radius: 10px;
+}
+
+.contrainers {
+	background: var(--entry);
+}
+
+body {
+	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+	background: url(/imgs/Background-Powerpoint-dep-nhat-12.jpg);
+	width: 100%;
+	height: 100%;
+}
+
+tbody tr:hover {
+	background: rgb(204, 204, 204);
+	cursor: pointer;
+}
+
+.hover {
+	cursor: pointer;
+}
+
+.feedback {
+	color: red;
+}
+
+.include {
+	position: fixed;
+	top: -20px;
+	left: 8%
+}
+
+.hiden {
+	display: none;
+}
+
+.indexPage {
+	width: 30px;
+	height: 30px;
+	text-align: center;
+	background: #4ba1fa;
+	border-radius: 50%;
+	color: white;
+	margin-bottom: 15px;
+	color: #f6f4e6 !important;
+}
+
+a {
+	color: black !important;
+	text-decoration: none !important;
+}
